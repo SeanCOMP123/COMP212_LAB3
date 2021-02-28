@@ -33,28 +33,27 @@ namespace COMP212_LAB3
             if (inputTextBox.Text != "") 
             {
                 string number = inputTextBox.Text;
-                var result = Task<BigInteger>.Run(() => Factorial(number));
-                await result;
-                resultTextBox.Text = result.Result.ToString();
+                calculatingLabel.Content = "Calculating....";
+                var result = await Task.Run(() => Factorial(number));
+                calculatingLabel.Content = "Calculation Done";
+                resultTextBox.Text = result;
             }
         }
 
         private async void searchButton_Click(object sender, RoutedEventArgs e)
         {
-            progressLabel.Visibility = Visibility.Visible;
             progressLabel.Content = "Searching...";
             string searchFilter = symbolSearchInput.Text;
             dataGrid.ItemsSource = await GetStocks(searchFilter);
             dataGrid.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Date", System.ComponentModel.ListSortDirection.Ascending));
-            if (dataGrid.ItemsSource == null)
+
+            if (dataGrid.Items.Count ==0)
             {
                 progressLabel.Content = "No matching Items";
-             
             }
             else
             {
                 progressLabel.Content = "Search done";
-
             }
         }
 
@@ -63,17 +62,20 @@ namespace COMP212_LAB3
         {
             dataGrid.ItemsSource = null;
             dataGrid.Items.Refresh();
-            progressLabel.Visibility = Visibility.Hidden;
+            progressLabel.Content = "";
         }
-        private BigInteger Factorial(string input)
+        private async Task<string> Factorial(string input)
         {
-            BigInteger number = BigInteger.Parse(input);
             BigInteger total = 1;
-            for (BigInteger i = 1; i <= number; i++)
+            BigInteger number = BigInteger.Parse(input);
+            await Task.Run(() =>
             {
-                total = total * i;
-            }
-            return total;
+                for (BigInteger i = 1; i <= number; i++)
+                {
+                    total = total * i;
+                } 
+            });
+            return total.ToString();
         }
         private async Task<IEnumerable<Stock>> GetStocks(string symbol)
         {
@@ -107,6 +109,7 @@ namespace COMP212_LAB3
         private void calculationResetButton_Click(object sender, RoutedEventArgs e)
         {
             resultTextBox.Text = "";
+            calculatingLabel.Content = "";
         }
      
     }

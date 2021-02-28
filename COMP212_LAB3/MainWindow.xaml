@@ -62,8 +62,9 @@
         <Label Content="Answer" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="545,173,0,0" RenderTransformOrigin="0.763,1.436" Width="83" FontSize="14" FontWeight="Bold"/>
         <Button x:Name="searchButton" Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="99" Margin="277,54,0,0" Height="39" FontSize="14" FontWeight="Bold" Click="searchButton_Click"/>
         <Button x:Name="stockRearchReset" Content="Reset" HorizontalAlignment="Left" VerticalAlignment="Top" Width="92" Margin="390,54,0,0" Height="39" RenderTransformOrigin="0.965,0.586" FontSize="14" FontWeight="Bold" Click="stockRearchReset_Click"/>
-        <Label x:Name="progressLabel" Content="" HorizontalAlignment="Left" Margin="38,95,0,0" VerticalAlignment="Top" Width="169" FontSize="14" Visibility="Hidden"/>
+        <Label x:Name="progressLabel" Content="" HorizontalAlignment="Left" Margin="38,95,0,0" VerticalAlignment="Top" Width="169" FontSize="14"/>
         <Button x:Name="calculationResetButton" Content="Reset" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="661,107,0,0" Height="23" FontSize="14" FontWeight="Bold" Click="calculationResetButton_Click"/>
+        <Label x:Name="calculatingLabel" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="545,142,0,0" Width="216"/>
 
     </Grid>
 </Window>
